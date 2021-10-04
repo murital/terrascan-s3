@@ -29,4 +29,5 @@ jobs:
           AWS_DEFAULT_REGION: us-east-1    
       - name: Terraform Plan
         run: terraform plan
-
+        env:
+          AWS_DEFAULT_REGION: us-east-1 
