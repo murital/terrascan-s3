@@ -3,7 +3,7 @@ name: 'Terraform pull'
 on:
   push:
     branches:
-    - main
+    - terraform
   pull_request:
 
 jobs:
@@ -26,19 +26,7 @@ jobs:
         id: validate
         run: terraform validate -no-color
         env:
-          AWS_DEFAULT_REGION: us-east-1
-      - name: Pull Request Comment
-        if: github.event_name == 'pull_request'
-        uses: peter-evans/create-or-update-comment@v1.4.4
-        env:
-          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            #### Terraform Format and Style 🖌 `${{ steps.fmt.outcome }}`
-            #### Terraform Initialization ⚙️ `${{ steps.init.outcome }}`
-            #### Terraform Validation 🤖
-            ```${{ steps.validate.outputs.stdout }}```
-
+          AWS_DEFAULT_REGION: us-east-1    
+      - name: Terraform Plan
+        run: terraform plan
 
