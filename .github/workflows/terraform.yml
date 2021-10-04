@@ -28,6 +28,6 @@ jobs:
         env:
           AWS_DEFAULT_REGION: us-east-1    
       - name: Terraform Plan
-        run: terraform plan
-        env:
+        run: terraform plan -no-color
+        env: 
           AWS_DEFAULT_REGION: us-east-1 
