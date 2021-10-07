@@ -32,9 +32,9 @@ jobs:
         #config_path:
         #find_vulnerabilities:
    
-    - uses: accurics/terrascan-action@main
-      id: terraform-pre-commit 
-    - run: scripts/pre-commit-hook.sh 
+
+    - id: terraform-pre-commit 
+      run: scripts/pre-commit-hook.sh 
         
    #pre-commit:
          #runs-on: ubuntu-latest
