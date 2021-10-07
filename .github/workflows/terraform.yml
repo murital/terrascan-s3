@@ -32,14 +32,10 @@ jobs:
         #config_path:
         #find_vulnerabilities:
     - id: terraform-pre-commit   
-      uses: accurics/terrascan-action@main
-      name: terrascan
-      description: Runs terrascan on supported IaC templates.
-      language: script
-      entry: scripts/pre-commit-hook.sh 
+    - uses: accurics/terrascan-action@main
+    - name: terrascan
+      run: scripts/pre-commit-hook.sh 
         
-        entry: scripts/pre-commit-hook.sh
-     
    #pre-commit:
          #runs-on: ubuntu-latest
          #needs: terrascan_job         
