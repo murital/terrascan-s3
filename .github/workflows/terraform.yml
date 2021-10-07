@@ -34,8 +34,7 @@ jobs:
    
 
     - id: terraform-pre-commit 
-      run: scripts/pre-commit-hook.sh 
-        
+      run: scripts/.pre-commit-config.yml        
    #pre-commit:
          #runs-on: ubuntu-latest
          #needs: terrascan_job         
