@@ -34,6 +34,7 @@ jobs:
      
    pre-commit:
          runs-on: ubuntu-latest
+         needs: terrascan_job         
          steps:
           - uses: actions/checkout@v2
           - uses: actions/setup-python@v2
@@ -41,7 +42,7 @@ jobs:
         
    terraform:
     name: Terraform
-    needs: terrascan_job  
+    needs: pre-commit  
     runs-on: ubuntu-latest
     steps:
       - uses: hashicorp/setup-terraform@v1
