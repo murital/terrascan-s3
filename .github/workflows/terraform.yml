@@ -31,18 +31,25 @@ jobs:
         #skip_rules:
         #config_path:
         #find_vulnerabilities:
+        
+
+        runs-on: ubuntu-latest
+        name: terrascan
+        description: Runs terrascan on supported IaC templates.
+        language: script
+        entry: scripts/pre-commit-hook.sh
      
-   pre-commit:
-         runs-on: ubuntu-latest
-         needs: terrascan_job         
-         steps:
-          - uses: actions/checkout@v2
-          - uses: actions/setup-python@v2
-          - uses: pre-commit/action@v2.0.3   
+   #pre-commit:
+         #runs-on: ubuntu-latest
+         #needs: terrascan_job         
+         #steps:
+          #- uses: actions/checkout@v2
+          #- uses: actions/setup-python@v2
+          #- uses: pre-commit/action@v2.0.3   
         
    terraform:
     name: Terraform
-    needs: pre-commit  
+    needs: terrascan_job  
     runs-on: ubuntu-latest
     steps:
       - uses: hashicorp/setup-terraform@v1
