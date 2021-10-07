@@ -34,7 +34,7 @@ jobs:
    
 
     - id: terraform-pre-commit 
-    - run: | 
+      run: | 
           scripts/.pre-commit-config.yml
           pwd
           ls
