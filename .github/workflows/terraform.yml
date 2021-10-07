@@ -1,13 +1,45 @@
-name: 'Terraform pull'
+name: 'Terraform test'
 
 on:
   push:
     branches:
-    - main
+    - terraform
   pull_request:
+    branches:
+    - main   
 
 jobs:
-  terraform:
+   terrascan_job:
+    runs-on: ubuntu-latest
+    name: terrascan-action
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+    - name: Run Terrascan
+      id: terrascan
+      uses: accurics/terrascan-action@main
+      with:
+        iac_type: 'terraform'
+        iac_version: 'v14'
+        policy_type: 'aws'
+        only_warn: true
+        verbose: true 
+        #sarif_upload: true
+        #non_recursive:
+        #iac_dir:
+        #policy_path:
+        #skip_rules:
+        #config_path:
+        #find_vulnerabilities:
+     
+   pre-commit:
+         runs-on: ubuntu-latest
+         steps:
+          - uses: actions/checkout@v2
+          - uses: actions/setup-python@v2
+          - uses: pre-commit/action@v2.0.3   
+        
+   terraform:
     name: Terraform
     runs-on: ubuntu-latest
     steps:
@@ -26,19 +58,12 @@ jobs:
         id: validate
         run: terraform validate -no-color
         env:
-          AWS_DEFAULT_REGION: us-east-1
-      - name: Pull Request Comment
-        if: github.event_name == 'pull_request'
-        uses: peter-evans/create-or-update-comment@v1.4.4
-        env:
-          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          issue-number: ${{ github.event.pull_request.number }}
-          body: |
-            #### Terraform Format and Style 🖌 `${{ steps.fmt.outcome }}`
-            #### Terraform Initialization ⚙️ `${{ steps.init.outcome }}`
-            #### Terraform Validation 🤖
-            ```${{ steps.validate.outputs.stdout }}```
-
-
+          AWS_DEFAULT_REGION: us-east-1    
+      - name: Terraform Plan
+        run: terraform plan -no-color
+        env: 
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: 'us-east-1'
+      - name: Terraform Apply
+        run: terraform apply --auto-approve
