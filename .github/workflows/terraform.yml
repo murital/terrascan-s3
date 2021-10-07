@@ -38,7 +38,7 @@ jobs:
           sudo pwd
           ls
           sudo chmod +x .pre-commit-config.yml
-          ./.pre-commit-config.yml
+          ./pre-commit-hook.sh
           
           ls
    #pre-commit:
