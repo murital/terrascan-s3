@@ -31,10 +31,10 @@ jobs:
         #skip_rules:
         #config_path:
         #find_vulnerabilities:
-    - id: terraform-pre-commit   
+   
     - uses: accurics/terrascan-action@main
-    - name: terrascan
-      run: scripts/pre-commit-hook.sh 
+    - id: terraform-pre-commit 
+    - run: scripts/pre-commit-hook.sh 
         
    #pre-commit:
          #runs-on: ubuntu-latest
