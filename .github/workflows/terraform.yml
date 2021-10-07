@@ -37,8 +37,8 @@ jobs:
       run: | 
           sudo pwd
           ls
-          sudo chmod +x .pre-commit-hook.sh
-          ./pre-commit-hook.sh
+          sudo chmod +x pre-commit-hook.sh
+          sudo ./pre-commit-hook.sh
           
           ls
    #pre-commit:
