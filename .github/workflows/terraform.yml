@@ -33,7 +33,7 @@ jobs:
         #find_vulnerabilities:
    
     - uses: accurics/terrascan-action@main
-    - id: terraform-pre-commit 
+      id: terraform-pre-commit 
     - run: scripts/pre-commit-hook.sh 
         
    #pre-commit:
