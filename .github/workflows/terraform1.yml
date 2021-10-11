@@ -3,7 +3,7 @@ name: 'Terraform test'
 on:
   push:
     branches:
-    - terraform
+    - main
   pull_request:
     branches:
     - main   
