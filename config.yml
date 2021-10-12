@@ -1,0 +1,7 @@
+rules:
+  #scan-rules:
+    
+  skip-rules:
+      - AWS.S3Bucket.EncryptionandKeyManagement.High.0405
+      - AWS.S3Bucket.IAM.High.0370
+      - AWS.AKK.DP.HIGH.0012
