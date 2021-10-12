@@ -8,4 +8,4 @@ repos:
         description: Runs terrascan on supported IaC templates.
         language: script
         entry: scripts/pre-commit-hook.sh
-        args: [ '-i k8s' ] 
+        args: [ '-i terraform' ] 
