@@ -2,7 +2,7 @@ rules:
   scan-rules:
     
   skip-rules:
-      - AC_AWS_0207
-      - AC_AWS_0214
-      - AC_AWS_0160
-      - AC_AWS_0497
+      # - AC_AWS_0207
+      # - AC_AWS_0214
+      # - AC_AWS_0160
+      # - AC_AWS_0497
