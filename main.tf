@@ -9,7 +9,7 @@ resource "aws_s3_bucket" "b" {
   acl    = "private"
 
   tags = {
-    Name        = "My bucket-test"
+    Name        = "My bucket"
     Environment = "Test1"
   }
   versioning {
