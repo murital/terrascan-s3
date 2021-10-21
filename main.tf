@@ -6,14 +6,17 @@ resource "aws_s3_bucket" "b" {
 
 
   bucket = "ami-tf-test-bucket"
-  acl    = "private"
+  acl    = "public"
+  source = "/Users/Muritala.Aminu/terraform/project/terrascan-s3/zoom_0.mp4"
 
   tags = {
-    Name        = "My bucket"
+    Name        = "Terrascan-demo"
     Environment = "Test"
   }
   versioning {
     enabled = true
   }
 }
+
+
    
