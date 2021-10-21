@@ -6,8 +6,8 @@ resource "aws_s3_bucket" "b" {
 
 
   bucket = "ami-tf-test-bucket"
-  acl    = "public"
-  source = "/Users/Muritala.Aminu/terraform/project/terrascan-s3/zoom_0.mp4"
+  acl    = "public-read"
+  
 
   tags = {
     Name        = "Terrascan-demo"
@@ -18,5 +18,9 @@ resource "aws_s3_bucket" "b" {
   }
 }
 
-
-   
+resource "aws_s3_bucket" "object" {
+  bucket = "aws_s3_bucket.b.id"
+  key = "terrascan-demo-video"
+  acl = "public-read"
+  source = "/Users/Muritala.Aminu/terraform/project/terrascan-s3/zoom_0.mp4"
+}
